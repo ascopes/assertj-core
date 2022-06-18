@@ -20,4 +20,13 @@ jobs:
           release: ${{ matrix.java }}
           version: latest
       - name: Test
-        run: ./mvnw -V --no-transfer-progress -e verify javadoc:javadoc
+        run: >
+          ./mvnw -B -e -V --no-transfer-progress
+          verify javadoc:javadoc
+          -Djapicmp.breakBuildOnBinaryIncompatibleModifications=true
+          -Djansi.passthrough=true
+          -Dmaven.artifact.threads=100
+          -Dmaven.compiler.fork=true
+          -DskipTests
+          -Dstyle.color=always          
+
