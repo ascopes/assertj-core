@@ -16,7 +16,7 @@ import java.util.Comparator;
 
 public class CaseInsensitiveStringComparator implements Comparator<String> {
 
-  public final static CaseInsensitiveStringComparator instance = new CaseInsensitiveStringComparator();
+  public static final CaseInsensitiveStringComparator INSTANCE = new CaseInsensitiveStringComparator();
 
   @Override
   public int compare(String s1, String s2) {

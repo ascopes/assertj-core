@@ -12,22 +12,17 @@
  */
 package org.assertj.core.test;
 
-import static org.assertj.core.api.BDDAssertions.then;
+import static java.lang.Character.toLowerCase;
 
-import org.junit.jupiter.api.Test;
-import org.junitpioneer.jupiter.DefaultLocale;
+import java.util.Comparator;
 
-class CaseInsensitiveStringComparatorTest {
+public class CaseInsensitiveCharacterComparator implements Comparator<Character> {
 
-  private final CaseInsensitiveStringComparator underTest = new CaseInsensitiveStringComparator();
+  public static final CaseInsensitiveCharacterComparator INSTANCE = new CaseInsensitiveCharacterComparator();
 
-  @Test
-  @DefaultLocale("tr-TR")
-  void should_work_with_Turkish_default_locale() {
-    // WHEN
-    int result = underTest.compare("i", "I");
-    // THEN
-    then(result).isZero();
+  @Override
+  public int compare(Character c1, Character c2) {
+    return Character.compare(toLowerCase(c1), toLowerCase(c2));
   }
 
 }
